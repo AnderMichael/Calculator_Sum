@@ -1,23 +1,26 @@
 pipeline {
     agent any
     tools {
-        nodejs 'nodejs'
+        nodejs 'Nodejs'
     }
     stages {
         stage('Build') { 
             steps {
+                echo 'Building...'
                 sh 'npm install' 
                 sh 'npm build' 
             }
         }
         stage('Unit Tests') { 
             steps {
+                echo 'Testing 1...'
                 sh 'npm test' 
             }
         }
     
         stage('Integration Tests') { 
             steps {
+                echo 'Testing 2...'
                 sh 'npm run e2e' 
             }
         }
