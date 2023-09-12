@@ -5,28 +5,18 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'npm install' 
+                sh 'npm build' 
             }
         }
-    }
-    stages {
         stage('Unit Tests') { 
             steps {
                 sh 'npm test' 
             }
         }
-    }
-    stages {
+    
         stage('Integration Tests') { 
             steps {
                 sh 'npm run e2e' 
-            }
-        }
-    }
-    stages {
-        stage('Unit Tests') { 
-            steps {
-                sh 'npm build' 
             }
         }
     }
