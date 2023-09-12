@@ -19,10 +19,12 @@ pipeline {
         }
     
         stage('Integration Tests') {
-            steps {
-                echo 'Testing 2...'
-                sh 'npm run e2e'              
-            }
+            Parallel{
+                steps {
+                    echo 'Testing 2...'
+                    sh 'npm run e2e'              
+                }
+            }           
         }
     }
 }
