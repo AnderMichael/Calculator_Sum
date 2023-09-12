@@ -7,7 +7,7 @@ pipeline {
         stage('Build') { 
             steps {
                 echo 'Building...'
-                sh 'npm ci' 
+                sh 'npm install' 
                 sh 'npm run build' 
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 wrap([$class: 'Xvfb']) {
                     echo 'Testing 2...'
-                    sh 'npm run e2e' 
+                    sh 'npm run e2e:ci' 
                 }              
             }
         }
