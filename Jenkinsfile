@@ -20,10 +20,8 @@ pipeline {
     
         stage('Integration Tests') {
             steps {
-                wrap([$class: 'Xvfb']) {
-                    echo 'Testing 2...'
-                    sh 'npm run e2e:ci' 
-                }              
+                echo 'Testing 2...'
+                sh 'npm run e2e:ci'              
             }
         }
     }
