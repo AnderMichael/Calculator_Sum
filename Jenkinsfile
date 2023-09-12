@@ -17,10 +17,10 @@ pipeline {
                 sh 'npm test' 
             }
         }
-        script{
-            stage('Integration Tests') {
-                wrap([$class: 'Xvfb', screen: '1920x1080x24']) {
-                    steps {
+        stage('Integration Tests') {
+            steps {
+                script{
+                    wrap([$class: 'Xvfb', screen: '1920x1080x24']) {
                         echo 'Testing 2...'
                         sh 'npm run e2e'              
                     }
