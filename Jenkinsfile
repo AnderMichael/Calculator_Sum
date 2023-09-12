@@ -20,7 +20,7 @@ pipeline {
         stage('Integration Tests') {
             steps {
                 script{
-                    wrap([$class: 'xvfb', screen: '1920x1080x24']) {
+                    wrap([$class: 'Xvfb']) {
                         stage('Test 2'){
                             steps{
                                 echo 'Testing 2...'
