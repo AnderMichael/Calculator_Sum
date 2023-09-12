@@ -21,7 +21,7 @@ pipeline {
         stage('Integration Tests') {
                 steps {
                     echo 'Testing 2...'
-                    sh 'npm run e2e:ci'              
+                    sh 'npm run e2e'              
                 }           
         }
     }

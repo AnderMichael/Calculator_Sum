@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "e2e:ci": "cypress:ci run",
     "e2e": "cypress run",
     "dev": "vite",
     "build": "tsc && vite build",
