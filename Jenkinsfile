@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         nodejs 'Nodejs'
+        xvfb 'xvfb'
     }
     stages {
         stage('Build') { 
