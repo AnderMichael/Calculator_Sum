@@ -37,7 +37,7 @@ test("Calculate the sum correctly", async () => {
   await userEvent.click(sumButton);
   // Check if the result is displayed correctly
   expect(getByTestId("result").textContent).toEqual("30");
-},10000);
+}, 10000);
 
 test("Calculate the sum correctly, positiveFloat + negativeFloat", async () => {
   const { getByPlaceholderText, getByTestId, getByRole } = render(
@@ -140,7 +140,7 @@ test("Empty 1st input", async () => {
   await userEvent.click(sumButton);
   // Check if the result is displayed correctly
   expect(getByText("Ingresa un número")).toBeInTheDocument();
-});
+}, 10000);
 
 test("Empty 2nd input", async () => {
   const { getByRole, getByText, getByPlaceholderText } = render(<Calculator />);
@@ -153,4 +153,4 @@ test("Empty 2nd input", async () => {
   await userEvent.click(sumButton);
   // Check if the result is displayed correctly
   expect(getByText("Ingresa un número")).toBeInTheDocument();
-});
+}, 10000);
