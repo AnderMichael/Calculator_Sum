@@ -14,14 +14,15 @@ pipeline {
         stage('Unit Tests') { 
             steps {
                 echo 'Testing 1...'
-                sh 'npm test' 
+                sh 'npm run test' 
             }
         }
+    
         stage('Integration Tests') {
-            steps{
-                echo 'Testing 2...'
-                sh 'npm run e2e'
-            }                               
+                steps {
+                    echo 'Testing 2...'
+                    sh 'npm run dev && npm run e2e'              
+                }           
         }
     }
 }
