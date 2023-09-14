@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "e2e": "cypress run",
+    "e2e": "concurrently \"npm run dev\" \"cypress run\"",
     "dev": "vite",
     "build": "tsc && vite build",
     "start": "concurrently \"npm run dev\"",
