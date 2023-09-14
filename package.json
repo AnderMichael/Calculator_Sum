@@ -7,6 +7,7 @@
     "e2e": "cypress run",
     "dev": "vite",
     "build": "tsc && vite build",
+    "start": "concurrently \"npm run dev\"",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest"
