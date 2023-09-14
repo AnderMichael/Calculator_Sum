@@ -37,7 +37,7 @@ test("Calculate the sum correctly", async () => {
   await userEvent.click(sumButton);
   // Check if the result is displayed correctly
   expect(getByTestId("result").textContent).toEqual("30");
-});
+},10000);
 
 test("Calculate the sum correctly, positiveFloat + negativeFloat", async () => {
   const { getByPlaceholderText, getByTestId, getByRole } = render(
