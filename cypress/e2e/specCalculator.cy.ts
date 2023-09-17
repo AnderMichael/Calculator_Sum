@@ -8,10 +8,10 @@ describe("Init Test Calculator", () => {
   });
 
   it("Click on the button", () => {
-    cy.get("#sum").click();
-    cy.get("#en1").contains("Ingresa un número");
-    cy.get("#en2").contains("Ingresa un número");
-    cy.get("#result").contains("Nada aún");
+    cy.get("#1").click();
+    cy.get("#firstNumber").should('have.value', '1');
+    cy.get("#secondNumber").should('have.value', '');
+    cy.get("#result").should('have.value', '');
   });
 });
 
@@ -21,72 +21,77 @@ describe("Setting Values Test Calculator", () => {
   });
 
   it("Filling the blanks", () => {
-    cy.get("#num1").type("20");
-    cy.get("#num2").type("10");
+    cy.get("#1").click();
+    cy.get("#2").click();
+    cy.get("#3").click();
+    cy.get("#firstNumber").should('have.value', '123');
+
+    cy.get("#addition").click();
+
+    cy.get("#1").click();
+    cy.get("#2").click();
+    cy.get("#3").click();
+    cy.get("#secondNumber").should('have.value', '123');
+
   });
 
   it("Obtaining a result", () => {
-    cy.get("#num1").type("20");
-    cy.get("#num2").type("10");
-    cy.get("#sum").click();
-    cy.get("#result").contains("30");
-  });
+    cy.get("#1").click();
+    cy.get("#2").click();
+    cy.get("#3").click();
+    cy.get("#firstNumber").should('have.value', '123');
 
-  it("Checking the last result", () => {
-    cy.get("#num1").type("20.5");
-    cy.get("#num2").type("10.5");
-    cy.get("#sum").click();
-    cy.get("#result").contains("31");
-    cy.get("#num1").type("236");
-    cy.get("#num2").type("567");
-    cy.get("#result").contains("31");
+    cy.get("#addition").click();
+
+    cy.get("#1").click();
+    cy.get("#2").click();
+    cy.get("#3").click();
+    cy.get("#secondNumber").should('have.value', '123');
+
+    cy.get("#calculate").click();
+    cy.get("#result").should('have.value', '246');
   });
 
   it("Obtaining errors", () => {
-    cy.get("#num1").type("++30");
-    cy.get("#num2").type("1a0");
-    cy.get("#sum").click();
-    cy.get("#en1").contains("Ingresa un número válido");
-    cy.get("#en2").contains("Ingresa un número válido");
-    cy.get("#result").contains("Nada aún");
-  });
+    cy.get("#1").click();
+    cy.get("#2").click();
+    cy.get("#3").click();
+    cy.get("#dot").click();
+    cy.get("#dot").click();
 
-  it("Obtaining errors and check the last result", () => {
-    cy.get("#num1").type("20");
-    cy.get("#num2").type("10");
-    cy.get("#sum").click();
-    cy.get("#result").contains("30");
-    cy.get("#num1").type("236a");
-    cy.get("#num2").type("567b");
-    cy.get("#en1").contains("Ingresa un número válido");
-    cy.get("#en2").contains("Ingresa un número válido");
-    cy.get("#sum").click();
-    cy.get("#en1").contains("Ingresa un número válido");
-    cy.get("#en2").contains("Ingresa un número válido");
-    cy.get("#result").contains("30");
+    cy.get("#firstNumber").should('have.value', '123..');
+
+    cy.get("#addition").click();
+
+    cy.get("#1").click();
+    cy.get("#2").click();
+    cy.get("#3").click();
+    cy.get("#secondNumber").should('have.value', '123');
+
+    cy.get("#calculate").click();
+    cy.get("#result").should('have.value', 'Introduce valid numbers');
   });
 
   it("Adding numbers and obtaining another result", () => {
-    cy.get("#num1").type("20");
-    cy.get("#num2").type("10");
-    cy.get("#sum").click();
-    cy.get("#result").contains("30");
-    cy.get("#num1").type("236");
-    cy.get("#num2").type("567");
-    cy.get("#sum").click();
-    cy.get("#result").contains("30803");
-  });
+    cy.get("#1").click();
+    cy.get("#2").click();
+    cy.get("#3").click();
+    
+    cy.get("#addition").click();
 
-  it("Refilling and obtaining another result", () => {
-    cy.get("#num1").type("20");
-    cy.get("#num2").type("10");
-    cy.get("#sum").click();
-    cy.get("#result").contains("30");
-    cy.get("#num1").clear();
-    cy.get("#num1").type("120");
-    cy.get("#num2").clear();
-    cy.get("#num2").type("-252");
-    cy.get("#sum").click();
-    cy.get("#result").contains("-132");
+    cy.get("#1").click();
+    cy.get("#2").click();
+    cy.get("#3").click();
+
+    cy.get("#calculate").click();
+    cy.get("#result").should('have.value', '246');
+
+    cy.get("#0").click();
+    cy.get("#0").click();
+    cy.get("#0").click();
+    cy.get("#calculate").click();
+    cy.get("#result").should('have.value', '123123');
+
+ 
   });
 });

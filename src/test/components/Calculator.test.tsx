@@ -10,145 +10,318 @@ test("Initial State Calculator Component", () => {
   );
 
   // Check if the component's title is rendered
-  expect(getByText("Súper Dúper Calculadora pa Sumar")).toBeInTheDocument();
+  expect(getByText("Calculator to Paul")).toBeInTheDocument();
 
   // Check if the input placeholders are rendered
-  expect(getByPlaceholderText("Ingresa el número 1")).toBeInTheDocument();
-  expect(getByPlaceholderText("Ingresa el número 2")).toBeInTheDocument();
+  expect(getByPlaceholderText("First Number")).toBeInTheDocument();
+  expect(getByPlaceholderText("Second Number")).toBeInTheDocument();
 
   // Check if the "Sum" button is rendered
-  expect(getByTestId("result").textContent).toEqual("Nada aún");
+  expect(getByTestId("result").textContent).toEqual("");
 }, 20000);
 
-test("Calculate the sum correctly", async () => {
-  const { getByPlaceholderText, getByTestId, getByRole } = render(
-    <Calculator />
-  );
+test("Typing the first number", async () => {
+  const { getByTestId } = render(<Calculator />);
 
-  const input1 = getByPlaceholderText("Ingresa el número 1");
-  const input2 = getByPlaceholderText("Ingresa el número 2");
-  const sumButton = getByRole("button", { name: "Sumar" });
+  const number0 = getByTestId("0");
+  const number1 = getByTestId("1");
+  const number2 = getByTestId("2");
+  const number3 = getByTestId("3");
+  const number4 = getByTestId("4");
+  const number5 = getByTestId("5");
+  const number6 = getByTestId("6");
+  const number7 = getByTestId("7");
+  const number8 = getByTestId("8");
+  const number9 = getByTestId("9");
 
-  // Enter values into the input fields
-  await userEvent.type(input1, "10");
-  await userEvent.type(input2, "20");
+  const input1 = getByTestId("firstNumber");
+  const result = getByTestId("result");
+
+  //const equal = getByTestId("calculate");
 
   // Click the "Sum" button
-  await userEvent.click(sumButton);
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(number4);
+  await userEvent.click(number5);
+  await userEvent.click(number6);
+  await userEvent.click(number7);
+  await userEvent.click(number8);
+  await userEvent.click(number9);
+  await userEvent.click(number0);
+
+  //await userEvent.click(equal);
   // Check if the result is displayed correctly
-  expect(getByTestId("result").textContent).toEqual("30");
+  expect(input1).toHaveValue("1234567890");
+  expect(result.textContent).toEqual("");
 }, 20000);
 
-test("Calculate the sum correctly, positiveFloat + negativeFloat", async () => {
-  const { getByPlaceholderText, getByTestId, getByRole } = render(
-    <Calculator />
-  );
+test("Typing the second number", async () => {
+  const { getByTestId } = render(<Calculator />);
 
-  const input1 = getByPlaceholderText("Ingresa el número 1");
-  const input2 = getByPlaceholderText("Ingresa el número 2");
-  const sumButton = getByRole("button", { name: "Sumar" });
+  const number0 = getByTestId("0");
+  const number1 = getByTestId("1");
+  const number2 = getByTestId("2");
+  const number3 = getByTestId("3");
+  const number4 = getByTestId("4");
+  const number5 = getByTestId("5");
+  const number6 = getByTestId("6");
+  const number7 = getByTestId("7");
+  const number8 = getByTestId("8");
+  const number9 = getByTestId("9");
 
-  // Enter values into the input fields
-  await userEvent.type(input1, "10.5");
-  await userEvent.type(input2, "-20.1");
+  const input1 = getByTestId("firstNumber");
+  const input2 = getByTestId("secondNumber");
+
+  const plus = getByTestId("addition");
+
+  const result = getByTestId("result");
+
+  //const equal = getByTestId("calculate");
 
   // Click the "Sum" button
-  await userEvent.click(sumButton);
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(number4);
+  await userEvent.click(number5);
+  await userEvent.click(number6);
+  await userEvent.click(number7);
+  await userEvent.click(number8);
+  await userEvent.click(number9);
+  await userEvent.click(number0);
+  await userEvent.click(plus);
+
+  //await userEvent.click(equal);
   // Check if the result is displayed correctly
-  expect(getByTestId("result").textContent).toEqual("-9.600000000000001");
+  expect(input1).toHaveValue("1234567890");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  expect(result.textContent).toEqual("");
+
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(number4);
+  await userEvent.click(number5);
+  await userEvent.click(number6);
+  await userEvent.click(number7);
+  await userEvent.click(number8);
+  await userEvent.click(number9);
+  await userEvent.click(number0);
+
+  expect(input2).toHaveValue("1234567890");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  expect(result.textContent).toEqual("");
 }, 20000);
 
-test("Calculate the sum correctly, positive + negative", async () => {
-  const { getByPlaceholderText, getByTestId, getByRole } = render(
-    <Calculator />
-  );
+test("Typing a sum, rest, mult and division", async () => {
+  const { getByTestId } = render(<Calculator />);
 
-  const input1 = getByPlaceholderText("Ingresa el número 1");
-  const input2 = getByPlaceholderText("Ingresa el número 2");
-  const sumButton = getByRole("button", { name: "Sumar" });
+  const number1 = getByTestId("1");
+  const number2 = getByTestId("2");
+  const number3 = getByTestId("3");
 
-  // Enter values into the input fields
-  await userEvent.type(input1, "10");
-  await userEvent.type(input2, "-20");
+  const input1 = getByTestId("firstNumber");
+  const input2 = getByTestId("secondNumber");
+
+  const plus = getByTestId("addition");
+
+  const result = getByTestId("result");
+
+  //const equal = getByTestId("calculate");
 
   // Click the "Sum" button
-  await userEvent.click(sumButton);
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(plus);
+
+  //await userEvent.click(equal);
   // Check if the result is displayed correctly
-  expect(getByTestId("result").textContent).toEqual("-10");
+  expect(input1).toHaveValue("123");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  expect(result.textContent).toEqual("");
+
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+
+  expect(input2).toHaveValue("123");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("246");
+
+  const subtraction = getByTestId("subtraction");
+  await userEvent.click(subtraction);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("0");
+
+  const multiplication = getByTestId("multiplication");
+  await userEvent.click(multiplication);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("15129");
+
+  const division = getByTestId("division");
+  await userEvent.click(division);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("1");
 }, 20000);
 
-test("Calculate the sum correctly, negative + negative", async () => {
-  const { getByPlaceholderText, getByTestId, getByRole } = render(
-    <Calculator />
-  );
+test("Typing a float sum, rest, mult and division", async () => {
+  const { getByTestId } = render(<Calculator />);
 
-  const input1 = getByPlaceholderText("Ingresa el número 1");
-  const input2 = getByPlaceholderText("Ingresa el número 2");
-  const sumButton = getByRole("button", { name: "Sumar" });
+  const number1 = getByTestId("1");
+  const number2 = getByTestId("2");
+  const number3 = getByTestId("3");
+  const point = getByTestId("dot");
 
-  // Enter values into the input fields
-  await userEvent.type(input1, "-10");
-  await userEvent.type(input2, "-20");
+  const input1 = getByTestId("firstNumber");
+  const input2 = getByTestId("secondNumber");
+
+  const plus = getByTestId("addition");
+
+  const result = getByTestId("result");
+
+  //const equal = getByTestId("calculate");
 
   // Click the "Sum" button
-  await userEvent.click(sumButton);
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(point);
+  await userEvent.click(number1);
+
+  await userEvent.click(plus);
+
+  //await userEvent.click(equal);
   // Check if the result is displayed correctly
-  expect(getByTestId("result").textContent).toEqual("-30");
+  expect(input1).toHaveValue("123.1");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  expect(result.textContent).toEqual("");
+
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(point);
+  await userEvent.click(number1);
+
+  expect(input2).toHaveValue("123.1");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("246.2");
+
+  const subtraction = getByTestId("subtraction");
+  await userEvent.click(subtraction);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("0");
+
+  const multiplication = getByTestId("multiplication");
+  await userEvent.click(multiplication);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("15153.609999999999");
+
+  const division = getByTestId("division");
+  await userEvent.click(division);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("1");
 }, 20000);
 
-test("Empty inputs", async () => {
-  const { getByRole, getAllByText } = render(<Calculator />);
+test("Typing a sum, rest, mult and division", async () => {
+  const { getByTestId } = render(<Calculator />);
 
-  const sumButton = getByRole("button", { name: "Sumar" });
+  const number1 = getByTestId("1");
+  const number2 = getByTestId("2");
+  const number3 = getByTestId("3");
+
+  const input1 = getByTestId("firstNumber");
+  const input2 = getByTestId("secondNumber");
+
+  const plus = getByTestId("addition");
+
+  const result = getByTestId("result");
+
+  //const equal = getByTestId("calculate");
 
   // Click the "Sum" button
-  await userEvent.click(sumButton);
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(plus);
+
+  //await userEvent.click(equal);
   // Check if the result is displayed correctly
-  getAllByText("Ingresa un número").forEach((text) =>
-    expect(text).toBeInTheDocument()
-  );
+  expect(input1).toHaveValue("123");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  expect(result.textContent).toEqual("");
+
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+
+  expect(input2).toHaveValue("123");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("246");
+
+  const subtraction = getByTestId("subtraction");
+  await userEvent.click(subtraction);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("0");
+
+  const multiplication = getByTestId("multiplication");
+  await userEvent.click(multiplication);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("15129");
+
+  const division = getByTestId("division");
+  await userEvent.click(division);
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("1");
 }, 20000);
 
-test("Incorrect inputs", async () => {
-  const { getByRole, getAllByText, getByPlaceholderText } = render(<Calculator />);
+test("Typing a float sum, rest, mult and division", async () => {
+  const { getByTestId } = render(<Calculator />);
 
-  const input1 = getByPlaceholderText("Ingresa el número 1");
-  const input2 = getByPlaceholderText("Ingresa el número 2");
-  const sumButton = getByRole("button", { name: "Sumar" });
+  const number1 = getByTestId("1");
+  const number2 = getByTestId("2");
+  const number3 = getByTestId("3");
+  const point = getByTestId("dot");
 
-  // Enter values into the input fields
-  await userEvent.type(input1, "attstd");
-  await userEvent.type(input2, "tetwuu");
-  await userEvent.click(sumButton);
+  const input1 = getByTestId("firstNumber");
+  const input2 = getByTestId("secondNumber");
 
-  // Check if the result is displayed correctly
-  getAllByText("Ingresa un número válido").forEach((text) =>
-    expect(text).toBeInTheDocument()
-  );
-}, 20000);
+  const plus = getByTestId("addition");
 
-test("Empty 1st input", async () => {
-  const { getByRole, getByText, getByPlaceholderText } = render(<Calculator />);
+  const result = getByTestId("result");
 
-  const sumButton = getByRole("button", { name: "Sumar" });
-  const input2 = getByPlaceholderText("Ingresa el número 2");
-  await userEvent.type(input2, "20");
+  //const equal = getByTestId("calculate");
 
   // Click the "Sum" button
-  await userEvent.click(sumButton);
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(point);
+  await userEvent.click(number1);
+
+  await userEvent.click(plus);
+
+  //await userEvent.click(equal);
   // Check if the result is displayed correctly
-  expect(getByText("Ingresa un número")).toBeInTheDocument();
+  expect(input1).toHaveValue("123.1");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  expect(result.textContent).toEqual("");
+
+  await userEvent.click(number1);
+  await userEvent.click(number2);
+  await userEvent.click(number3);
+  await userEvent.click(point);
+  await userEvent.click(point);
+
+
+  expect(input2).toHaveValue("123..");
+  expect(getByTestId("sign").textContent).toEqual("+");
+  await userEvent.click(getByTestId("calculate"));
+  expect(result).toHaveValue("Introduce valid numbers");
 }, 20000);
 
-test("Empty 2nd input", async () => {
-  const { getByRole, getByText, getByPlaceholderText } = render(<Calculator />);
-
-  const sumButton = getByRole("button", { name: "Sumar" });
-  const input1 = getByPlaceholderText("Ingresa el número 1");
-  await userEvent.type(input1, "20");
-
-  // Click the "Sum" button
-  await userEvent.click(sumButton);
-  // Check if the result is displayed correctly
-  expect(getByText("Ingresa un número")).toBeInTheDocument();
-}, 20000);
